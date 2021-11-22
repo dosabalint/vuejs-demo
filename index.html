@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@6.x/css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+</head>
+<body>
+<div id="app">
+    <v-app>
+        <v-main>
+
+
+            <h1>title</h1>
+
+            <v-card
+                    class="mx-auto"
+                    max-width="400"
+                    tile
+            >
+
+                <v-list-item two-line>
+                    <v-list-item-content>
+                        <v-list-item-title>Diák neve</v-list-item-title>
+                        <v-list-item-subtitle>Diák leírása</v-list-item-subtitle>
+                    </v-list-item-content>
+                </v-list-item>
+
+            </v-card>
+
+
+            <!-- Új tanuló felvétele -->
+            <input type="text" v-model="newStudent.name" @keydown.enter="AddNewStudent()">
+
+            <br>
+
+            <label>
+                Lány
+                <input type="radio" name="gender" value="lány" v-model="newStudent.gender">
+            </label>
+
+            <label>
+                Fiú
+                <input type="radio" name="gender" value="fiú" v-model="newStudent.gender">
+            </label>
+
+
+            <br>
+
+            <button @click="AddNewStudent()">felvétel az osztályba</button>
+
+
+            <ul>
+                <li v-for="student in studentCollection">
+                <span :style="studentStyle">
+                    {{ student.name }}
+                </span>
+                    --
+                    <span v-show="student.gender == 'lány'">
+                    Nőnapon virágot kap majd</span>
+                    <span v-if="student.gender == 'fiú'">
+                    Gyereknapon labdát kap majd</span>
+                </li>
+            </ul>
+
+        </v-main>
+    </v-app>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+<script defer src="app.js"></script>
+
+</body>
+</html>
